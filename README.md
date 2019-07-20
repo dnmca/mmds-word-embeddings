@@ -35,6 +35,26 @@ Cluster for word2vec PySpark and Jupyter-Notebook was launched on [**GCP**]() ru
 
 #### Word2Vec training
 
+Word2Vec trains a model of Map(String, Vector), i.e. transforms a word into a code for further natural language processing or machine learning process.
+
+We created Pipeline class to handle word2vec training.
+This class includes:
+1. __init__ method, where we initialize dataframe, stop words, service words.
+
+2.  __preprocess__ method, which is used for preprocessing dataframe and calculating tokens. 
+
+3.   __fit__ method, which takes the number of samples for training model on, i.e. we create a spark dataframe with a part of the articles. 
+
+While training we faced many java heap errors and rpc memory limit errors. We solved this by adding more RAM memory on our cluster setup.
+
+In a reasonable time we got six trained word2vec models, trained on 10, 30, 50, 70, 90 and 110 thousands articles respectively. 
+We weren't able to train model with more than 150 thousands articles, because 26 gigabytes of RAM is not enough for this. Training the model on our cluster setup takes  approximately 30-40 minutes. 
+
+We discovered that vector size 100 for word2vec embeddings is sufficient for our model, because our dataset is relatively small.
+
+Models were flushed on disk for evaluation step.
+
+
 
 #### Evaluation
 
