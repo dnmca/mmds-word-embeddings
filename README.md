@@ -1,6 +1,8 @@
-# Ukrainian WIKI word embeddings
+# Ukrainian Wiki word embeddings
 
 ## Motivation
+
+There are exising embeddings trained on collected corpora of newswire, articles, fiction, juridical texts by the team of ukrainian researchers. We assumed that training similar embeddings on ukrainian wikipedia can give us comparable (or better) results, since wikipedia contains information from  larger amount of sources and fields of life. Besides it, we think that the possibility to process all articles at the same time by utilizing Big Data technologies can make data preparation process faster than manual one (combining od texts from different sources).
 
 ## Steps
 
