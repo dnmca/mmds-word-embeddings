@@ -12,9 +12,9 @@ To prepare Wiki dump for further usage in training of Word2Vec model we performe
 2) Read all chunks and concatenated them all into single data frame.
 3) Remove all non-ukrainian letters, symbols, tags and special characters using regular expressions.
 4) Tokenize texts.
-5) Remove stop words ([data/stop_words.txt](data/stop_words.txt)).
+5) Remove stop words ([https://github.com/andreyurkiv/mmds-word-embeddings/blob/master/data/stop_words](data/stop_words.txt)).
 6) Using word count and some manual work determine service Wikipedia words (used in markdown).
-7) Remove service words ([data/service_words.txt](data/service_words.txt))
+7) Remove service words ([https://github.com/andreyurkiv/mmds-word-embeddings/blob/master/data/service_words](data/service_words.txt))
 
 #### Cluster setup
 
