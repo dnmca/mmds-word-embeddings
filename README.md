@@ -66,11 +66,12 @@ Models were flushed on disk for evaluation step.
 
 #### Evaluation
 
-There is a [test set for word embeddings evaluation for Ukrainian language](https://raw.githubusercontent.com/lang-uk/vecs/master/test/test_vocabulary.txt).
+There is a [test set for word embeddings evaluation for Ukrainian language](https://raw.githubusercontent.com/lang-uk/vecs/master/test/test_vocabulary.txt). The size of test set is 23982 examples.
+
 The idea of evaluation is to check relations between words. For example, word "king" relates to "queen" like "father" should relates to "mother".
 So the idea is to find the word "mother". We use **gensim** library to find closest relations.
 
 In our case we find top-10 closest words by relation (cosine dustance between embeddings) and check if the target word is in top-10. And then we calculate a precision of the embeddings.
-We take our embedings which were trained on the different size of the datasets (10k, 30k, 50k, 70k, 90k and 110k articles) and compare with Ward2Vec embedings of [lang-ua](http://lang.org.ua/en/models/).
+We take our embedings which were trained on the different size of the datasets (10k, 30k, 50k, 70k, 90k, 110k, 150k articles) and compare with Ward2Vec embedings of [lang-ua](http://lang.org.ua/en/models/).
 
-It occured that our the best embeddings have precision close to 23% and the lang-au embeddings has 67%. It can be explained by high variety of texts included into lang-ua corpus and special test examples which are not so good for wikipedia data, although lang-ua corpus include part of wikipedia articles as well. 
+It occured that our the best embeddings have precision close to 37% and the lang-au embeddings has 49%. It can be explained by high variety of texts included into lang-ua corpus and special test examples which are not so good for wikipedia data, although lang-ua corpus include part of wikipedia articles as well. 
