@@ -20,24 +20,35 @@ To prepare Wiki dump for further usage in training of Word2Vec model we performe
 
 #### Cluster setup
 
-Cluster for word2vec PySpark and Jupyter-Notebook was launched on [**GCP**]() running with [**Dataproc**](). The initial `.xml` dump preprocessing was performed on GCP Datalab instance (since we were not able to run it locally because of memory consumption).
+Cluster for word2vec PySpark and Jupyter-Notebook was launched on [**GCP**](https://cloud.google.com/) running with [**Dataproc**](https://cloud.google.com/dataproc/). The initial `.xml` dump preprocessing was performed on [Datalab](https://cloud.google.com/datalab/) instance (since we were not able to run it locally because of memory consumption).
 
-- Config
+- Guides
+  - [Official doc for cluster creation](https://cloud.google.com/dataproc/docs/guides/create-cluster)
+  - [PySpark sentiment analysis](https://towardsdatascience.com/step-by-step-tutorial-pyspark-sentiment-analysis-on-google-dataproc-fef9bef46468)
+  - [Jupyter notebook on dataproc cluster](https://cloud.google.com/dataproc/docs/concepts/components/jupyter)
+  - [Word2vec model usage example](https://spark.apache.org/docs/2.2.0/api/python/_modules/pyspark/ml/feature.html#Word2Vec)
 
-| Node   | Replication factor | Memory | CPU |
-| ------ | ------------------ |:------:|:---:|
-| Master | 1                  | 26 GB  | 4   |
-| Worker | 2                  | 13 GB  | 2   |
+- Cluster configuration
 
-- Guide
+| Node   | Replication factor | Memory | vCPU |
+| ------ | ------------------ |:------:|:----:|
+| Master | 1                  | 52 GB  | 4    |
+| Worker | 2                  | 52 GB  | 2    |
 
-- Articles
+- Actions
+
+1) Copy csv with articles from `gs` to cluster `hdfs`.
+2) Download stop words and service words.
+3) Download `n` articles (they were split into 90 `csv` files containing 10000 each).
+4) Preprocess articles.
+5) Create word2vec model from articles.
+6) Store model on `gs` (cloud storage).
 
 #### Word2Vec training
 
 Word2Vec trains a model of Map(String, Vector), i.e. transforms a word into a code for further natural language processing or machine learning process.
 
-We created Pipeline class to handle word2vec training.
+We created ```Pipeline``` class to handle word2vec training.
 This class includes:
 1. ```init``` method, where we initialize dataframe, stop words, service words.
 
@@ -48,13 +59,10 @@ This class includes:
 While training we faced many java heap errors and rpc memory limit errors. We solved this by adding more RAM memory on our cluster setup.
 
 In a reasonable time we got six trained word2vec models, trained on 10, 30, 50, 70, 90 and 110 thousands articles respectively. 
-We weren't able to train model with more than 150 thousands articles, because 26 gigabytes of RAM is not enough for this. Training the model on our cluster setup takes  approximately 30-40 minutes. 
 
 We discovered that vector size 100 for word2vec embeddings is sufficient for our model, because our dataset is relatively small.
 
 Models were flushed on disk for evaluation step.
-
-
 
 #### Evaluation
 
