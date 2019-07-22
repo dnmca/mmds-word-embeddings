@@ -73,6 +73,8 @@ The idea of evaluation is to check relations between words. For example, word "k
 So the idea is to find the word "mother". We use **gensim** library to find closest relations.
 
 In our case, we find top-10 closest words by relation (cosine distance between embeddings) and check if the target word is in top-10. And then we calculate a precision of the embeddings.
-We take our embeddings which were trained on the different size of the datasets (10k, 30k, 50k, 70k, 90k, 110k, 150k articles) and compared with Ward2Vec embeddings of [lang-ua](http://lang.org.ua/en/models/).
+We take our embeddings which were trained on the different size of the datasets (10k, 30k, 50k, 70k, 90k, 110k, 150k, 240k, 300k articles) and compared with Ward2Vec embeddings of [lang-ua](http://lang.org.ua/en/models/).
 
-It occurred that our the best embeddings have precision close to 37% and the lang-au embeddings have 49%. It can be explained by high variety of texts included into lang-ua corpus and special test examples which are not so good for Wikipedia data, although lang-ua corpus includes part of Wikipedia articles as well. 
+It occurred that our the best embeddings have precision close to 37% and the lang-au embeddings have 49%. It can be explained by high variety of texts included into lang-ua corpus and special test examples which are not so good for Wikipedia data, although lang-ua corpus includes part of Wikipedia articles as well.
+
+There are several more interesting things: the result does not increse after 150k, the vocabulary size became larger than lang-ua after covering 300k articles.
