@@ -32,8 +32,9 @@ Cluster for word2vec PySpark and Jupyter-Notebook was launched on [**GCP**](http
 
 | Node   | Replication factor | Memory | vCPU |
 | ------ | ------------------ |:------:|:----:|
-| Master | 1                  | 52 GB  | 4    |
-| Worker | 2                  | 52 GB  | 2    |
+| Master | 1                  | 52 GB  | 2    |
+| Worker | 3                  | 52 GB  | 2    |
+| Total  | 4                  | 208 GB | 8    |
 
 - Actions
 
